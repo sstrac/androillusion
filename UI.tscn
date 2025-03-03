@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://mr5cdwyniife"]
+
+[ext_resource type="Shader" path="res://semicircle.gdshader" id="1_f5ri8"]
+[ext_resource type="Shader" path="res://circle.gdshader" id="1_k1jga"]
+[ext_resource type="Script" path="res://ui.gd" id="1_y26k7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4ekh"]
+shader = ExtResource("1_f5ri8")
+
+[sub_resource type="Gradient" id="Gradient_xv33o"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.480519, 1)
+colors = PackedColorArray(0, 0.513726, 1, 1, 0.727967, 0.34359, 0.657518, 1, 0.941176, 0.164706, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dspma"]
+gradient = SubResource("Gradient_xv33o")
+metadata/_snap_count = 13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okvky"]
+shader = ExtResource("1_k1jga")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y26k7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -144.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Abilities" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+columns = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Abilities"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Abilities"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Abilities"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Abilities"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1132.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Dial" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_u4ekh")
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+texture = SubResource("GradientTexture2D_dspma")
+
+[node name="Hand" type="Control" parent="HBoxContainer/Dial"]
+anchors_preset = 0
+offset_left = 101.0
+offset_top = 199.0
+offset_right = 101.0
+offset_bottom = 199.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Dial/Hand"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -110.0
+offset_right = 5.0
+rotation = -0.00234633
+color = Color(1, 0.831464, 0.960064, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer/Dial/Hand"]
+material = SubResource("ShaderMaterial_okvky")
+layout_mode = 0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
+color = Color(1, 0.831373, 0.960784, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 474.0
+offset_right = 599.0
+offset_bottom = 514.0
