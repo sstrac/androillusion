@@ -22,7 +22,7 @@ func _ready():
 	free_timer.wait_time = lifetime_s
 
 	
-func _process(delta):
+func _process(_delta):
 	if label.custom_minimum_size.y < rise_height:
 		label.custom_minimum_size.y += 1
 	
