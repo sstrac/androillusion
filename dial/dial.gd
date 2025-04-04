@@ -1,18 +1,28 @@
 extends Control
 
+
 @onready var hand = get_node("Hand")
 
 const R = 300 # radius
+var center
+var x
+var hand_moving = false
 
-var value: float:
-	set(v):
-		value = clamp(v, 0.0, 1.0)
+
+func _ready() -> void:
+	center = hand.global_position
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(InputActions.RIGHT_CLICK):
+		hand_moving = true
+	elif event.is_action_released(InputActions.RIGHT_CLICK):
+		hand_moving = false
+
 
 func _physics_process(delta: float) -> void:
-
-	if Input.is_action_pressed(InputActions.RIGHT_CLICK):
-		var x = get_global_mouse_position().x
-		var center = hand.global_position
+	if hand_moving:
+		x = get_local_mouse_position().x
 		
 		if x >= center.x - R and x <= center.x + R:
 			var y = center.y - sqrt(abs(pow(R, 2) - pow(center.x - x, 2)))
@@ -30,5 +40,6 @@ func _physics_process(delta: float) -> void:
 			hand.rotation = lerp(hand.rotation, PI / 2, delta * 15)
 			
 		# Shift from -90 - 90 degrees to positive 0 - 180 degrees
-		# Then calculate fraction of current angle over full rotation range
-		value = ( hand.rotation + (PI / 2) ) / PI
+		# Then calculate fraction of current angle over full rotation range i.e. curr_angle / 180
+		# Finally round and scale up by a factor of 10 to make it 1-10 instead of 
+		DialTracker.factor = round( ( ( hand.rotation + (PI / 2) ) / PI ) * 10 )

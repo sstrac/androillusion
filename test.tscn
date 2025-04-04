@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bldu7sa3wijxp"]
+[gd_scene load_steps=4 format=3 uid="uid://bldu7sa3wijxp"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_tr6al"]
 [ext_resource type="PackedScene" uid="uid://dvurk1ehtoyof" path="res://character/character.tscn" id="2_7ty3j"]
+[ext_resource type="PackedScene" uid="uid://mr5cdwyniife" path="res://UI.tscn" id="3_dqbsn"]
 
 [node name="test" type="Control"]
 layout_mode = 3
@@ -10,17 +11,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_tr6al")
 
 [node name="Enemy" parent="." instance=ExtResource("2_7ty3j")]
-position = Vector2(350, 124)
+position = Vector2(638, 386)
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
-offset_left = 223.0
-offset_top = 40.0
-offset_right = 280.0
-offset_bottom = 71.0
+offset_left = 511.0
+offset_top = 302.0
+offset_right = 568.0
+offset_bottom = 333.0
 text = "SLASH"
+
+[node name="UI" parent="." instance=ExtResource("3_dqbsn")]
+layout_mode = 1
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(606, 389)
 
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

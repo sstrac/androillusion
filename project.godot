@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputActions="*res://autoload/input_actions.gd"
+DialTracker="*res://autoload/dial_tracker.gd"
 
 [input]
 

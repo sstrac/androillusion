@@ -16,7 +16,7 @@ offset_right = 1.0
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_j55w7")]
 position = Vector2(-1, -26)
-damage = 10
+base_damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(1, 13)
