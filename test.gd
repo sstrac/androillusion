@@ -1,14 +1,11 @@
 extends Node
 
-const NUMBER = preload("res://number.tscn")
+const SWORD = preload("res://sword.tscn")
 
-var number
 
-func _on_button_pressed() -> void:
-	if number == null or number.locked:
-		number = NUMBER.instantiate()
-		number.position = Vector2(200, 200)
-		add_child(number)
-		
-	
-	number.bump(2)
+
+
+func _on_button_2_pressed() -> void:
+	var sword = SWORD.instantiate()
+	add_child(sword)
+	sword.position = Vector2(315, 120)

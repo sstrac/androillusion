@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dslups6jadhbu"]
+
+[ext_resource type="Shader" path="res://semicircle.gdshader" id="1_3jlus"]
+[ext_resource type="Script" path="res://dial/dial.gd" id="2_427lf"]
+[ext_resource type="Shader" path="res://circle.gdshader" id="3_b4qxw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4ekh"]
+shader = ExtResource("1_3jlus")
+
+[sub_resource type="Gradient" id="Gradient_xv33o"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.480519, 1)
+colors = PackedColorArray(0, 0.513726, 1, 1, 0.727967, 0.34359, 0.657518, 1, 0.941176, 0.164706, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dspma"]
+gradient = SubResource("Gradient_xv33o")
+metadata/_snap_count = 13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okvky"]
+shader = ExtResource("3_b4qxw")
+
+[node name="Dial" type="TextureRect"]
+material = SubResource("ShaderMaterial_u4ekh")
+custom_minimum_size = Vector2(200, 200)
+size_flags_horizontal = 6
+size_flags_vertical = 8
+texture = SubResource("GradientTexture2D_dspma")
+script = ExtResource("2_427lf")
+
+[node name="Hand" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 101.0
+offset_top = 199.0
+offset_right = 101.0
+offset_bottom = 199.0
+
+[node name="ColorRect" type="ColorRect" parent="Hand"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -110.0
+offset_right = 5.0
+rotation = -0.00234633
+color = Color(1, 0.831464, 0.960064, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Hand"]
+material = SubResource("ShaderMaterial_okvky")
+layout_mode = 0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
+color = Color(1, 0.831373, 0.960784, 1)

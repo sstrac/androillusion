@@ -4,6 +4,7 @@ extends Control
 @export var rich_text_label: RichTextLabel
 @export var max_font_size: int
 @export var min_font_size: int
+@export var steps_to_max: int
 @export var rise_height: int
 @export var lock_time_s: int
 @export var lifetime_s: int
@@ -13,12 +14,19 @@ extends Control
 @onready var lock_timer: Timer = get_node("LockTimer")
 @onready var free_timer: Timer = get_node("FreeTimer")
 
-var font_size: int = 20
+var font_size: int = 20:
+	set(f):
+		font_size = clamp(f, min_font_size, max_font_size)
+
+var font_size_increment: float
+		
 var value: int = 0
 var locked = false
 
 
 func _ready():
+	font_size_increment = (max_font_size - min_font_size) / steps_to_max
+	
 	if rich_text_label == null:
 		rich_text_label = RichTextLabel.new()
 		rich_text_label.scroll_active = false
@@ -44,7 +52,7 @@ func _append_value(amount):
 	value += amount
 	
 	if font_size < max_font_size:
-		font_size += 1
+		font_size += font_size_increment
 	
 	
 func _update_label():

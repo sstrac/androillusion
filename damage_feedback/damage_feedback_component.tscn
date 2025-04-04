@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b731nb1y7d5bm"]
+
+[ext_resource type="Script" path="res://damage_feedback/damage_feedback_component.gd" id="1_1pach"]
+[ext_resource type="PackedScene" uid="uid://dvnt6pcne7shm" path="res://damage_feedback/stacking_number.tscn" id="2_k3e76"]
+
+[node name="DamageFeedbackComponent" type="Node2D"]
+script = ExtResource("1_1pach")
+stacking_number_scene = ExtResource("2_k3e76")

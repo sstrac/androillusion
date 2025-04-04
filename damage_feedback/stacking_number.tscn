@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvnt6pcne7shm"]
 
-[ext_resource type="Script" path="res://number.gd" id="1_72j6f"]
+[ext_resource type="Script" path="res://damage_feedback/stacking_number.gd" id="1_72j6f"]
 
 [sub_resource type="Gradient" id="Gradient_h1a7l"]
-offsets = PackedFloat32Array(0, 0.277778, 0.777778, 1)
-colors = PackedColorArray(0.345098, 0.00784314, 0, 1, 0.192157, 0.419608, 0.619608, 1, 9.62615e-06, 0.925309, 0.928367, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.435065, 0.777778, 1)
+colors = PackedColorArray(0.734224, 0.0400485, 0, 1, 0.192157, 0.419608, 0.619608, 1, 9.62615e-06, 0.925309, 0.928367, 1, 1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_gtacf"]
 length = 0.001
@@ -44,12 +44,13 @@ _data = {
 "bump": SubResource("Animation_eg7b3")
 }
 
-[node name="Number" type="CenterContainer"]
+[node name="StackingNumberComponent" type="CenterContainer"]
 scale = Vector2(1.2, 1.2)
 use_top_left = true
 script = ExtResource("1_72j6f")
 max_font_size = 40
 min_font_size = 20
+steps_to_max = 10
 rise_height = 100
 lock_time_s = 1
 lifetime_s = 1
