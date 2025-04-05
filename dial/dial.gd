@@ -8,6 +8,7 @@ var center
 var x
 var hand_moving = false
 
+signal changed(factor)
 
 func _ready() -> void:
 	center = hand.global_position
@@ -42,4 +43,6 @@ func _physics_process(delta: float) -> void:
 		# Shift from -90 - 90 degrees to positive 0 - 180 degrees
 		# Then calculate fraction of current angle over full rotation range i.e. curr_angle / 180
 		# Finally round and scale up by a factor of 10 to make it 1-10 instead of 
-		DialTracker.factor = round( ( ( hand.rotation + (PI / 2) ) / PI ) * 10 )
+		var factor = round( ( ( hand.rotation + (PI / 2) ) / PI ) * 10 )
+		changed.emit(factor)
+		
