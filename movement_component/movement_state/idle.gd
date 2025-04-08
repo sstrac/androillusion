@@ -20,4 +20,4 @@ func process(character, delta):
 
 
 func approach(character, target: Node2D):
-	return Approach.new(target)
+	character.movement_comp.state = Approach.new(target)

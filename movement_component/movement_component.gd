@@ -13,3 +13,7 @@ func process(delta):
 
 func physics_process(delta):
 	state.physics_process(character, delta)
+
+
+func approach(target: Node2D):
+	state.approach(character, target)

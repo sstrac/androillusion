@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://snu76g0sxdhf"]
+[gd_scene load_steps=4 format=3 uid="uid://snu76g0sxdhf"]
 
+[ext_resource type="Script" path="res://character/player.gd" id="1_2qf3b"]
 [ext_resource type="PackedScene" uid="uid://dvurk1ehtoyof" path="res://character/character.tscn" id="1_3okgr"]
 [ext_resource type="PackedScene" uid="uid://5s80v4ovx056" path="res://movement_component/player_movement/player_movement_component.tscn" id="2_ftq3b"]
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_2qf3b")
 
 [node name="Character" parent="." node_paths=PackedStringArray("movement_comp") instance=ExtResource("1_3okgr")]
-movement_comp = NodePath("../PlayerMovementComponent")
+movement_comp = NodePath("PlayerMovementComponent")
 
-[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_ftq3b")]
-character = NodePath("../Character")
+[node name="PlayerMovementComponent" parent="Character" node_paths=PackedStringArray("character") instance=ExtResource("2_ftq3b")]
+character = NodePath("..")

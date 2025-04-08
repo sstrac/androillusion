@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @onready var label = get_node('Label')
 @onready var anim = get_node("AnimationPlayer")
 @onready var health_comp = get_node("HealthComponent")
@@ -26,6 +27,7 @@ func _process(delta: float) -> void:
 	movement_comp.process(delta)
 	
 	
+# Used by state
 func go_to(pos, delta, speed=100):
 	global_position = global_position.move_toward(pos, delta * speed) 
 	move_and_slide()
