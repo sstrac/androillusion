@@ -1,9 +1,10 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var label = get_node('Label')
 @onready var anim = get_node("AnimationPlayer")
 @onready var health_comp = get_node("HealthComponent")
 @onready var damage_feedback_comp = get_node("DamageFeedbackComponent")
+@export var movement_comp: Node
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +14,18 @@ func _ready() -> void:
 
 
 func _on_health_changed(change):
-	damage_feedback_comp.feedback(change)
 	label.text = '%d' % health_comp.health
 	anim.play('flash')
+
+
+func _physics_process(delta: float) -> void:
+	movement_comp.physics_process(delta)
+	
+
+func _process(delta: float) -> void:
+	movement_comp.process(delta)
+	
+	
+func go_to(pos, delta, speed=100):
+	global_position = global_position.move_toward(pos, delta * speed) 
+	move_and_slide()

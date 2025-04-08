@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://kw8bhvpwly5j"]
+
+[ext_resource type="PackedScene" uid="uid://20sl7l4jxmne" path="res://movement_component/android_movement/android_movement_component.tscn" id="1_rxr3m"]
+[ext_resource type="PackedScene" uid="uid://dvurk1ehtoyof" path="res://character/character.tscn" id="2_qiksi"]
+
+[node name="Android" type="Node2D"]
+
+[node name="Character" parent="." node_paths=PackedStringArray("movement_comp") instance=ExtResource("2_qiksi")]
+movement_comp = NodePath("../AndroidMovementComponent2")
+
+[node name="AndroidMovementComponent2" parent="." node_paths=PackedStringArray("character") instance=ExtResource("1_rxr3m")]
+character = NodePath("../Character")
