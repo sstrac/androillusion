@@ -1,9 +1,6 @@
-extends Node2D
-
-
-@onready var character = get_node("Character")
+extends Character
 
 
 func attack(target):
-	character.movement_comp.approach(target)
+	movement_comp.approach(target)
 	# Do other stuff

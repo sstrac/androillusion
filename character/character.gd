@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Character
 
 @onready var label = get_node('Label')
 @onready var anim = get_node("AnimationPlayer")

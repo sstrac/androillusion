@@ -1,14 +1,102 @@
-[gd_scene load_steps=4 format=3 uid="uid://kw8bhvpwly5j"]
+[gd_scene load_steps=11 format=3 uid="uid://iu2di7i1ildc"]
 
 [ext_resource type="Script" path="res://character/android.gd" id="1_5c76c"]
 [ext_resource type="PackedScene" uid="uid://20sl7l4jxmne" path="res://movement_component/android_movement/android_movement_component.tscn" id="1_rxr3m"]
-[ext_resource type="PackedScene" uid="uid://dvurk1ehtoyof" path="res://character/character.tscn" id="2_qiksi"]
+[ext_resource type="PackedScene" uid="uid://b731nb1y7d5bm" path="res://damage_feedback/damage_feedback_component.tscn" id="2_o5abo"]
+[ext_resource type="PackedScene" uid="uid://dl3lebrkeqavb" path="res://health_component/health_component.tscn" id="3_nbgpg"]
+[ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_6he0j"]
 
-[node name="Android" type="Node2D"]
+[sub_resource type="Animation" id="Animation_dj7w5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dq8bo"]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwt06"]
+_data = {
+"RESET": SubResource("Animation_dj7w5"),
+"flash": SubResource("Animation_dq8bo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
+size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
+size = Vector2(32, 56)
+
+[node name="Android" type="CharacterBody2D" node_paths=PackedStringArray("movement_comp")]
 script = ExtResource("1_5c76c")
-
-[node name="Character" parent="." node_paths=PackedStringArray("movement_comp") instance=ExtResource("2_qiksi")]
 movement_comp = NodePath("AndroidMovementComponent")
 
-[node name="AndroidMovementComponent" parent="Character" node_paths=PackedStringArray("character") instance=ExtResource("1_rxr3m")]
+[node name="AndroidMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("1_rxr3m")]
 character = NodePath("..")
+
+[node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_o5abo")]
+position = Vector2(0, -48)
+health_comp = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_nbgpg")]
+max_health = 100
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 16.0
+offset_bottom = 28.0
+color = Color(0.890706, 0, 0.0493286, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 16.0
+offset_bottom = 28.0
+color = Color(0.890706, 0, 0.0493286, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 35.0
+offset_top = -32.0
+offset_right = 75.0
+offset_bottom = -9.0
+text = "100"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mwt06")
+}
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_6he0j")]
+collision_layer = 2
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_uegq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yk7x0")
+debug_color = Color(0.438128, 0.454891, 1, 0.42)
