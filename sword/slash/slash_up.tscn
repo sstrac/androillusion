@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhyonf7hrb567"]
+
+[ext_resource type="Script" path="res://sword/slash/slash_up.gd" id="1_sw6kj"]
+
+[node name="SlashUp" type="Node"]
+script = ExtResource("1_sw6kj")
