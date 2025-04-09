@@ -1,7 +1,8 @@
 extends MovementComponent
 
 
-@onready var timer_change_direction = get_node("Timer")
+@onready var timer_change_direction = get_node("ChangeDirectionTimer")
+@onready var still_timer = get_node("StillTimer")
 
 
 func _ready():

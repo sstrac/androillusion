@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	movement_comp.process(delta)
 	
 	
-# Used by state
+### Used only by state ###
 func follow(pos, delta, speed=100):
 	global_position = global_position.move_toward(pos, delta * speed) 
 	move_and_slide()

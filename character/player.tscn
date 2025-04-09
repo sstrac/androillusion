@@ -50,6 +50,7 @@ size = Vector2(32, 56)
 size = Vector2(32, 56)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_comp")]
+collision_mask = 0
 script = ExtResource("1_2qf3b")
 movement_comp = NodePath("PlayerMovementComponent")
 

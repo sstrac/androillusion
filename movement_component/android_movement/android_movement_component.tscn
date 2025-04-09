@@ -5,5 +5,7 @@
 [node name="AndroidMovementComponent" type="Node"]
 script = ExtResource("1_oe1kp")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="StillTimer" type="Timer" parent="."]
