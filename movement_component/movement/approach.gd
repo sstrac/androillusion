@@ -10,4 +10,4 @@ func _init(target) -> void:
 
 
 func process(character, delta):
-	character.go_to(target.global_position, delta)
+	character.follow(target.global_position, delta)

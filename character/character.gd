@@ -29,6 +29,6 @@ func _process(delta: float) -> void:
 	
 	
 # Used by state
-func go_to(pos, delta, speed=100):
+func follow(pos, delta, speed=100):
 	global_position = global_position.move_toward(pos, delta * speed) 
 	move_and_slide()
