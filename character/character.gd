@@ -10,6 +10,7 @@ const COMBO_ORDERED = [SLASH1_SCENE, SLASH2_SCENE]
 @onready var label = get_node('Label')
 @onready var anim = get_node("AnimationPlayer")
 @onready var health_comp = get_node("HealthComponent")
+@onready var hitbox_comp: Area2D = get_node("HitboxComponent")
 @onready var damage_feedback_comp = get_node("DamageFeedbackComponent")
 
 @export var movement_comp: Node
@@ -42,7 +43,8 @@ func follow(pos, delta, speed=100):
 	
 
 func spawn_sword():
-	var sword = SWORD_SCENE.instantiate()
+	var sword: Node2D = SWORD_SCENE.instantiate()
+	sword.avoid_hitbox = hitbox_comp
 	
 	var slash_scene = COMBO_ORDERED[curr_slash_i + 1]
 	

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://buu16rcco2mku"]
+
+[ext_resource type="Script" path="res://damage_dealer_component.gd" id="1_b5lab"]
+
+[node name="DamageDealerComponent" type="Area2D"]
+script = ExtResource("1_b5lab")
+base_damage = 1
