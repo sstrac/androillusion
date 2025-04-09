@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://iu2di7i1ildc"]
+[gd_scene load_steps=12 format=3 uid="uid://b13i8r5vn7lw6"]
 
-[ext_resource type="Script" path="res://character/android.gd" id="1_5c76c"]
-[ext_resource type="PackedScene" uid="uid://20sl7l4jxmne" path="res://movement_component/android_movement/android_movement_component.tscn" id="1_rxr3m"]
-[ext_resource type="PackedScene" uid="uid://b731nb1y7d5bm" path="res://damage_feedback/damage_feedback_component.tscn" id="2_o5abo"]
-[ext_resource type="PackedScene" uid="uid://dl3lebrkeqavb" path="res://health_component/health_component.tscn" id="3_nbgpg"]
-[ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_6he0j"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_2qf3b"]
+[ext_resource type="PackedScene" uid="uid://5s80v4ovx056" path="res://movement_component/player_movement/player_movement_component.tscn" id="2_ftq3b"]
+[ext_resource type="PackedScene" uid="uid://b731nb1y7d5bm" path="res://damage_feedback/damage_feedback_component.tscn" id="2_s186m"]
+[ext_resource type="PackedScene" uid="uid://dl3lebrkeqavb" path="res://health_component/health_component.tscn" id="3_jamio"]
+[ext_resource type="PackedScene" uid="uid://bvyur5id1r0bi" path="res://input_components/sword/sword_input_component.tscn" id="3_rjygk"]
+[ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_vki7y"]
 
 [sub_resource type="Animation" id="Animation_dj7w5"]
 length = 0.001
@@ -49,19 +50,22 @@ size = Vector2(32, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
 size = Vector2(32, 56)
 
-[node name="Android" type="CharacterBody2D" node_paths=PackedStringArray("movement_comp")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_comp")]
 collision_mask = 0
-script = ExtResource("1_5c76c")
-movement_comp = NodePath("AndroidMovementComponent")
+script = ExtResource("1_2qf3b")
+movement_comp = NodePath("PlayerMovementComponent")
 
-[node name="AndroidMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("1_rxr3m")]
+[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_ftq3b")]
 character = NodePath("..")
 
-[node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_o5abo")]
+[node name="SwordInputComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_rjygk")]
+character = NodePath("..")
+
+[node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_s186m")]
 position = Vector2(0, -48)
 health_comp = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_nbgpg")]
+[node name="HealthComponent" parent="." instance=ExtResource("3_jamio")]
 max_health = 100
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -90,9 +94,7 @@ libraries = {
 "": SubResource("AnimationLibrary_mwt06")
 }
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_6he0j")]
-collision_layer = 2
-collision_mask = 2
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vki7y")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
