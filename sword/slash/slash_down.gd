@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 const SPEED = 500
@@ -8,8 +8,9 @@ const FINAL_ROTATION = 100
 
 @export var sword: Node2D
 
-func _physics_process(delta: float) -> void:
-	rotation_degrees += 1 * delta * SPEED
 
-	if abs(rotation_degrees - FINAL_ROTATION) < EPSILON:
-		queue_free()
+func _physics_process(delta: float) -> void:
+	sword.rotation_degrees += 1 * delta * SPEED
+
+	if abs(sword.rotation_degrees - FINAL_ROTATION) < EPSILON:
+		sword.queue_free()

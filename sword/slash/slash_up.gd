@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 const SPEED = 500
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	rotation_degrees -= 1 * delta * SPEED
+	sword.rotation_degrees -= 1 * delta * SPEED
 
-	if abs(rotation_degrees) < EPSILON:
-		queue_free()
+	if abs(sword.rotation_degrees) < EPSILON:
+		sword.queue_free()
