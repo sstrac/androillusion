@@ -16,4 +16,16 @@ func physics_process(delta):
 
 
 func approach(target: Node2D):
-	state.approach(character, target)
+	pass
+
+
+func jump():
+	pass
+	
+
+func post_jump():
+	pass
+
+
+func post_slash():
+	pass

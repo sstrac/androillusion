@@ -11,13 +11,12 @@ var sword: Node2D
 var curr_slash_i = -1
 
 func progress():
+	assert(sword != null)
+	
 	curr_slash_i += 1
 	
 	if curr_slash_i == ORDERED_SLASHES.size():
 		curr_slash_i = 0
-		
-	if curr_slash_i == JUMP_UP_SLASH_COMBO_I:
-		movement_comp.jump()
 	
 	var slash_scene = ORDERED_SLASHES[curr_slash_i]
 	
@@ -25,3 +24,5 @@ func progress():
 	slash.sword = sword
 	sword.add_child(slash)
 	
+	if curr_slash_i == JUMP_UP_SLASH_COMBO_I:
+		movement_comp.jump()

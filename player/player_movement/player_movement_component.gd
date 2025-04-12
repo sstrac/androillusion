@@ -7,3 +7,7 @@ func _ready():
 
 func jump():
 	state = PlayerJump.new()
+
+
+func post_jump():
+	state = PlayerControl.new()

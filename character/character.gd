@@ -38,14 +38,19 @@ func _process(delta: float) -> void:
 	
 ### Used only by state ###
 func go_to(pos, delta, speed=100):
-	global_position = global_position.move_toward(pos, delta * speed) 
+	global_position = global_position.move_toward(pos, delta * speed)
+	print(pos)
 	move_and_slide()
 
 
-func spawn_sword():
+func slash_sword():
 	var sword: Node2D = SWORD_SCENE.instantiate()
 	sword.avoid_hitbox = hitbox_comp
+	sword.tree_exited.connect(_on_slash_complete)
 	jump_combo.sword = sword
 	jump_combo.progress()
 	add_child(sword)
 	
+
+func _on_slash_complete():
+	movement_comp.post_slash()
