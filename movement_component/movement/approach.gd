@@ -5,8 +5,8 @@ class_name Approach
 var target: Node2D
 
 
-func _init(target) -> void:
-	self.target = target
+func _init(_target) -> void:
+	self.target = _target
 
 
 func process(character, delta):

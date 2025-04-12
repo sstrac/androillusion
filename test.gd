@@ -5,7 +5,7 @@ extends Node
 
 
 func _on_button_pressed() -> void:
-	android.attack(player)
+	android.charge(player)
 
 
 func _on_button_2_pressed() -> void:

@@ -6,11 +6,24 @@ const ORDERED_SLASHES = [SLASH2_SCENE, SLASH1_SCENE, SLASH2_SCENE, SLASH1_SCENE]
 const JUMP_UP_SLASH_COMBO_I = 2
 
 @export var movement_comp: Node
-var sword: Node2D
+@export var sword: Node2D
+
+@onready var reset_timer: Timer = get_node("ResetTimer")
 
 var curr_slash_i = -1
 
+
+func _ready() -> void:
+	reset_timer.timeout.connect(_reset_combo)
+
+
+func _reset_combo():
+	curr_slash_i = -1
+
+
 func progress():
+	reset_timer.start()
+	
 	assert(sword != null)
 	
 	curr_slash_i += 1
@@ -22,7 +35,14 @@ func progress():
 	
 	var slash = slash_scene.instantiate()
 	slash.sword = sword
+	slash.tree_exited.connect(_on_slash_complete)
 	sword.add_child(slash)
 	
 	if curr_slash_i == JUMP_UP_SLASH_COMBO_I:
 		movement_comp.jump()
+
+
+func _on_slash_complete():
+	movement_comp.post_slash()
+	sword.hide()
+	sword.attacking = false

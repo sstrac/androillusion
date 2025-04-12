@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://b13i8r5vn7lw6"]
+[gd_scene load_steps=14 format=3 uid="uid://b13i8r5vn7lw6"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_2qf3b"]
 [ext_resource type="PackedScene" uid="uid://5s80v4ovx056" path="res://player/player_movement/player_movement_component.tscn" id="2_ftq3b"]
 [ext_resource type="PackedScene" uid="uid://b731nb1y7d5bm" path="res://damage_feedback/damage_feedback_component.tscn" id="2_s186m"]
 [ext_resource type="PackedScene" uid="uid://dl3lebrkeqavb" path="res://health_component/health_component.tscn" id="3_jamio"]
-[ext_resource type="PackedScene" uid="uid://bvyur5id1r0bi" path="res://input_components/sword/sword_input_component.tscn" id="3_rjygk"]
+[ext_resource type="PackedScene" uid="uid://bvyur5id1r0bi" path="res://input_component/sword/sword_input_component.tscn" id="3_rjygk"]
 [ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_vki7y"]
+[ext_resource type="PackedScene" uid="uid://v5bdtgrgd4v6" path="res://sword/sword.tscn" id="4_vl6jl"]
+[ext_resource type="PackedScene" uid="uid://dofb14x11ank7" path="res://combo_component/jump_combo.tscn" id="5_6cpt4"]
 
 [sub_resource type="Animation" id="Animation_dj7w5"]
 length = 0.001
@@ -58,8 +60,20 @@ movement_comp = NodePath("PlayerMovementComponent")
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_ftq3b")]
 character = NodePath("..")
 
-[node name="SwordInputComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_rjygk")]
+[node name="SwordInputComponent" parent="." node_paths=PackedStringArray("sword") instance=ExtResource("3_rjygk")]
+sword = NodePath("../Sword")
+
+[node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "movement_comp", "avoid_hitbox") instance=ExtResource("4_vl6jl")]
+visible = false
+position = Vector2(17, 3)
 character = NodePath("..")
+combo = NodePath("../JumpCombo")
+movement_comp = NodePath("../PlayerMovementComponent")
+avoid_hitbox = NodePath("../HitboxComponent")
+
+[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_6cpt4")]
+movement_comp = NodePath("../PlayerMovementComponent")
+sword = NodePath("../Sword")
 
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_s186m")]
 position = Vector2(0, -48)

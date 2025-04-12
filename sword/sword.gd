@@ -1,11 +1,21 @@
 extends Node2D
 
+@export var character: CharacterBody2D
+@export var combo: Node
+@export var movement_comp: Node
+@export var avoid_hitbox: Area2D
 
-# Called when the node enters the scene tree for the first time.
+@onready var damage_dealer_comp: Area2D = get_node("DamageDealerComponent")
+
+var attacking: bool = false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	damage_dealer_comp.avoid_hitbox = avoid_hitbox
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func attack():
+	if not attacking:
+		attacking = true
+		show()
+		avoid_hitbox = avoid_hitbox
+		combo.progress()

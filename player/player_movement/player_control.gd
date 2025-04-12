@@ -2,7 +2,7 @@ extends MovementState
 
 class_name PlayerControl
 
-const SPEED = 2
+const SPEED = 3
 
 func physics_process(character, delta):
 	var v_dir = Input.get_axis("up", "down")

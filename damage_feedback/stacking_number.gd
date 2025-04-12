@@ -18,7 +18,7 @@ var font_size: int = 20:
 	set(f):
 		font_size = clamp(f, min_font_size, max_font_size)
 
-var font_size_increment: float
+var font_size_increment: int
 		
 var value: int = 0
 var locked = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvyur5id1r0bi"]
 
-[ext_resource type="Script" path="res://input_components/sword/sword_input_component.gd" id="1_qbuqq"]
+[ext_resource type="Script" path="res://input_component/sword/sword_input_component.gd" id="1_qbuqq"]
 
 [node name="SwordInputComponent" type="Node"]
 script = ExtResource("1_qbuqq")

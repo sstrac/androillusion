@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 class_name Character
 
-const SWORD_SCENE = preload("res://sword/sword.tscn")
-const JUMP_COMBO_SCENE = preload("res://player/jump_combo.tscn")
 
 @onready var label = get_node('Label')
 @onready var anim = get_node("AnimationPlayer")
@@ -13,14 +11,11 @@ const JUMP_COMBO_SCENE = preload("res://player/jump_combo.tscn")
 
 @export var movement_comp: Node
 
-var jump_combo
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = '%d' % health_comp.health
 	health_comp.health_changed.connect(_on_health_changed)
-	jump_combo = JUMP_COMBO_SCENE.instantiate()
-	jump_combo.movement_comp = movement_comp
 
 
 func _on_health_changed(change):
@@ -41,16 +36,3 @@ func go_to(pos, delta, speed=100):
 	global_position = global_position.move_toward(pos, delta * speed)
 	print(pos)
 	move_and_slide()
-
-
-func slash_sword():
-	var sword: Node2D = SWORD_SCENE.instantiate()
-	sword.avoid_hitbox = hitbox_comp
-	sword.tree_exited.connect(_on_slash_complete)
-	jump_combo.sword = sword
-	jump_combo.progress()
-	add_child(sword)
-	
-
-func _on_slash_complete():
-	movement_comp.post_slash()
