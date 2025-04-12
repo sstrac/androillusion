@@ -16,7 +16,7 @@ func redirect_idle_point(character):
 
 
 func process(character, delta):
-	character.follow(idle_point, delta)
+	character.go_to(idle_point, delta)
 
 
 func approach(character, target: Node2D):
