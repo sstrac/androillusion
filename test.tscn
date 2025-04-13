@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bldu7sa3wijxp"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_tr6al"]
-[ext_resource type="PackedScene" uid="uid://b13i8r5vn7lw6" path="res://player/player.tscn" id="2_axa4b"]
-[ext_resource type="PackedScene" uid="uid://iu2di7i1ildc" path="res://android/android.tscn" id="3_a6rms"]
+[ext_resource type="PackedScene" uid="uid://b13i8r5vn7lw6" path="res://character/player/player.tscn" id="2_axa4b"]
+[ext_resource type="PackedScene" uid="uid://iu2di7i1ildc" path="res://character/android/android.tscn" id="3_a6rms"]
 [ext_resource type="PackedScene" uid="uid://mr5cdwyniife" path="res://UI.tscn" id="3_dqbsn"]
 
 [node name="test" type="Control"]
