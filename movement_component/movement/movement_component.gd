@@ -29,3 +29,11 @@ func post_jump():
 
 func post_slash():
 	pass
+	
+	
+func post_approach():
+	pass
+	
+
+func post_still():
+	pass

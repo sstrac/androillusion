@@ -29,3 +29,11 @@ func post_jump():
 
 func post_slash():
 	state.post_slash(character)
+	
+	
+func post_approach():
+	state = AndroidStill.new(character)
+
+
+func post_still():
+	state = AndroidIdle.new(character)

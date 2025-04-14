@@ -14,9 +14,5 @@ func process(character, delta):
 		target_reached = true
 
 
-func post_jump(_character):
-	pass
-	
-
 func post_slash(character):
-	character.movement_comp.state = AndroidStill.new(character)
+	character.movement_comp.post_approach()

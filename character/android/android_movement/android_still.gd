@@ -8,7 +8,7 @@ func _init(character):
 	
 
 func _on_still_timer_timeout(character):
-	character.movement_comp.state = AndroidIdle.new(character)
+	character.movement_comp.post_still()
 
 
 func post_jump(_character):

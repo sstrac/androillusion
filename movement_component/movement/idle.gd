@@ -17,7 +17,3 @@ func redirect_idle_point(character):
 
 func process(character, delta):
 	character.go_to(idle_point, delta)
-
-
-func approach(character, target: Node2D):
-	character.movement_comp.state = Approach.new(target)
