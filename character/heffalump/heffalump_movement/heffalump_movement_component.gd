@@ -16,3 +16,11 @@ func _ready() -> void:
 
 func _on_change_direction_timeout():
 	state.redirect_idle_point(character)
+
+
+func approach(target):
+	state = HeffalumpApproach.new(character, target)
+	
+
+func be_idle():
+	state = HeffalumpIdle.new(character)
