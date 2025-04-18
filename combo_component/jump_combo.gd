@@ -21,7 +21,7 @@ func _reset_combo():
 	curr_slash_i = -1
 
 
-func progress():
+func progress(facing):
 	reset_timer.start()
 	
 	assert(sword != null)
@@ -35,6 +35,7 @@ func progress():
 	
 	var slash = slash_scene.instantiate()
 	slash.sword = sword
+	slash.facing = facing
 	slash.tree_exited.connect(_on_slash_complete)
 	sword.add_child(slash)
 	

@@ -1,6 +1,7 @@
 extends Character
 
 @export var anim: AnimationPlayer
+@onready var sword = get_node("Sword")
 
 
 func _ready() -> void:
@@ -10,3 +11,11 @@ func _ready() -> void:
 
 func _on_health_changed(change):
 	anim.play('flash')
+
+
+func face_left():
+	sword.face_left()
+
+
+func face_right():
+	sword.face_right()

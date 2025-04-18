@@ -86,6 +86,12 @@ offset_right = 16.0
 offset_bottom = 28.0
 color = Color(0.890706, 0, 0.0493286, 1)
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 4.0
+offset_bottom = 28.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mwt06")

@@ -13,7 +13,7 @@ class_name Character
 func _physics_process(delta: float) -> void:
 	if movement_comp:
 		movement_comp.physics_process(delta)
-	
+
 
 func _process(delta: float) -> void:
 	if movement_comp:
@@ -28,4 +28,17 @@ func go_towards(pos, delta, speed=100):
 
 func go_in_direction(dir, delta, speed=100):
 	velocity = dir * speed
+	if velocity.x < 0:
+		face_left()
+	elif velocity.x > 0:
+		face_right()
+		
 	move_and_slide()
+
+
+func face_left():
+	pass
+
+
+func face_right():
+	pass
