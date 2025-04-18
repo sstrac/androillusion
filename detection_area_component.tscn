@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dierubkt3a2ux"]
+
+[ext_resource type="Script" path="res://detection_area_component.gd" id="1_l3fbf"]
+[ext_resource type="Shader" path="res://circle.gdshader" id="2_2ygpm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqufs"]
+shader = ExtResource("2_2ygpm")
+
+[node name="DetectionAreaComponent" type="Node2D" node_paths=PackedStringArray("debug_sprite")]
+script = ExtResource("1_l3fbf")
+debug_sprite = NodePath("Sprite2D")
+debug = null
+radius = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mqufs")

@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dofb14x11ank7" path="res://combo_component/jump_combo.tscn" id="5_6cpt4"]
 [ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="9_xam0j"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
+size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
+size = Vector2(32, 56)
+
 [sub_resource type="Animation" id="Animation_dj7w5"]
 length = 0.001
 tracks/0/type = "value"
@@ -32,12 +38,6 @@ _data = {
 "flash": ExtResource("9_xam0j")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
-size = Vector2(32, 56)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
-size = Vector2(32, 56)
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim", "damage_feedback_comp", "hitbox_comp", "health_comp", "health_feedback_comp", "movement_comp")]
 collision_mask = 0
 script = ExtResource("1_2qf3b")
@@ -51,17 +51,14 @@ movement_comp = NodePath("PlayerMovementComponent")
 [node name="HealthComponent" parent="." instance=ExtResource("3_jamio")]
 max_health = 100
 
-[node name="HealthFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_2ptmp")]
-offset_left = -15.0
-offset_top = -40.0
-offset_right = 16.0
-offset_bottom = -36.0
-health_comp = NodePath("../HealthComponent")
-
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_ftq3b")]
 character = NodePath("..")
 
 [node name="SwordInputComponent" parent="." node_paths=PackedStringArray("sword") instance=ExtResource("3_rjygk")]
+sword = NodePath("../Sword")
+
+[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_6cpt4")]
+movement_comp = NodePath("../PlayerMovementComponent")
 sword = NodePath("../Sword")
 
 [node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "avoid_hitbox") instance=ExtResource("4_vl6jl")]
@@ -71,12 +68,25 @@ character = NodePath("..")
 combo = NodePath("../JumpCombo")
 avoid_hitbox = NodePath("../HitboxComponent")
 
-[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_6cpt4")]
-movement_comp = NodePath("../PlayerMovementComponent")
-sword = NodePath("../Sword")
-
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_s186m")]
 position = Vector2(0, -48)
+health_comp = NodePath("../HealthComponent")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vki7y")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_uegq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yk7x0")
+debug_color = Color(0.438128, 0.454891, 1, 0.42)
+
+[node name="HealthFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_2ptmp")]
+offset_left = -15.0
+offset_top = -40.0
+offset_right = 16.0
+offset_bottom = -36.0
 health_comp = NodePath("../HealthComponent")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -96,13 +106,3 @@ offset_bottom = 28.0
 libraries = {
 "": SubResource("AnimationLibrary_mwt06")
 }
-
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vki7y")]
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("RectangleShape2D_uegq5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yk7x0")
-debug_color = Color(0.438128, 0.454891, 1, 0.42)
