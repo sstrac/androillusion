@@ -2,7 +2,7 @@ extends Node
  
 
 const MOVE_DIAL_CLICK = "move_dial_click"
-
+const DEVICE = 0
 
 func _process(delta):
 	if InputTracker.last_input_device == InputTracker.InputDevice.GAMEPAD:
@@ -13,13 +13,15 @@ func _process(delta):
 
 func interact_pressed(event: InputEvent):
 	return event.is_action_pressed("interact")
-	
-
-func right_click_pressed(event: InputEvent):
-	return event.is_action_pressed("right_click")
 
 
-func right_click_released(event: InputEvent):
-	for action in MOVE_DIAL_ACTIONS:
-		return event.is_action_released(action)
-	return false
+func dial_moved(event: InputEvent):
+	return event.is_action_pressed("move_dial_click") or \
+		abs(Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_X)) > 0.01 or \
+		abs(Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_Y)) > 0.01
+
+
+func dial_stopped(event: InputEvent):
+	return event.is_action_released("move_dial_click") or \
+		abs(Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_X)) < 0.01 or \
+		abs(Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_Y)) < 0.01

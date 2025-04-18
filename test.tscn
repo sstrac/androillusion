@@ -35,11 +35,6 @@ offset_right = 568.0
 offset_bottom = 333.0
 text = "SLASH"
 
-[node name="UI" parent="." instance=ExtResource("3_dqbsn")]
-layout_mode = 1
-offset_left = -1.0
-offset_right = -1.0
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(606, 389)
 
@@ -48,6 +43,11 @@ position = Vector2(684, 351)
 
 [node name="Heffalump" parent="." instance=ExtResource("5_6x1ha")]
 position = Vector2(556, 185)
+
+[node name="UI" parent="." instance=ExtResource("3_dqbsn")]
+layout_mode = 1
+offset_left = -1.0
+offset_right = -1.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
