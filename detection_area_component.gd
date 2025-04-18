@@ -10,10 +10,11 @@ const DEBUG_TEXTURE_LOC = "res://resources/debug_texture.tres"
 	set(r):
 		radius = r
 		if Engine.is_editor_hint() or debug:
-			recalc_texture()
+			_debug_texture()
 
 
-func recalc_texture():
+func _debug_texture():
+	# Duplicating the texture might cause OOM in editor, check this.
 	var texture: GradientTexture2D = load(DEBUG_TEXTURE_LOC).duplicate()
 	texture.height = radius
 	texture.width = radius
