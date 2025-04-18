@@ -10,3 +10,7 @@ func post_jump(_character):
 
 func post_slash(_character):
 	pass
+
+
+func redirect_idle_point(character):
+	pass

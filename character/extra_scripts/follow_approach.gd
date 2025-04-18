@@ -9,7 +9,7 @@ var target_reached = false
 
 func process(character, delta):
 	if character.global_position.distance_to(target.global_position) > CLOSE_RANGE:
-		character.go_to(target.global_position, delta)
+		character.go_towards(target.global_position, delta)
 	elif not target_reached:
 		character.on_target_reached()
 		target_reached = true

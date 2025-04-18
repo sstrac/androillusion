@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://v5bdtgrgd4v6" path="res://sword/sword.tscn" id="4_2oniy"]
 [ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_6he0j"]
 [ext_resource type="PackedScene" uid="uid://dofb14x11ank7" path="res://combo_component/jump_combo.tscn" id="5_sq83f"]
+[ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="8_jj5ub"]
 
 [sub_resource type="Animation" id="Animation_dj7w5"]
 length = 0.001
@@ -24,26 +25,10 @@ tracks/0/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_dq8bo"]
-resource_name = "flash"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [false, true, false, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwt06"]
 _data = {
 "RESET": SubResource("Animation_dj7w5"),
-"flash": SubResource("Animation_dq8bo")
+"flash": ExtResource("8_jj5ub")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
@@ -92,13 +77,6 @@ sword = NodePath("../Sword")
 max_health = 100
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -16.0
-offset_top = -28.0
-offset_right = 16.0
-offset_bottom = 28.0
-color = Color(0.890706, 0, 0.0493286, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
 offset_left = -16.0
 offset_top = -28.0
 offset_right = 16.0

@@ -4,6 +4,7 @@ class_name Idle
 
 const RANGE = 300
 
+var speed = 100
 var idle_point: Vector2
 
 
@@ -16,4 +17,4 @@ func redirect_idle_point(character):
 
 
 func process(character, delta):
-	character.go_to(idle_point, delta)
+	character.go_towards(idle_point, delta, speed)

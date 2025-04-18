@@ -4,3 +4,8 @@
 
 [node name="HeffalumpMovementComponent" type="Node"]
 script = ExtResource("1_guop4")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="StillTimer" type="Timer" parent="."]

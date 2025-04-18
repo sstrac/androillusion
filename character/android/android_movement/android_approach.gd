@@ -29,7 +29,7 @@ func _charge():
 func process(character, delta):
 	if charge:
 		if character.global_position.distance_to(last_target_location) > CLOSE_RANGE:
-			character.go_to(last_target_location, delta, SPEED)
+			character.go_towards(last_target_location, delta, SPEED)
 		elif not target_reached:
 			character.on_target_reached()
 			target_reached = true

@@ -10,7 +10,3 @@ func process(_character, _delta):
 	
 func physics_process(_character, _delta):
 	pass
-	
-
-func redirect_idle_point(_character):
-	pass
