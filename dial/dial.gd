@@ -26,7 +26,18 @@ func _physics_process(delta: float) -> void:
 		if InputTracker.last_input_device == InputTracker.InputDevice.KEYBOARD_MOUSE:
 			_move_via_mouse(delta)
 		elif InputTracker.last_input_device == InputTracker.InputDevice.GAMEPAD:
-			pass
+			_move_via_analogue(delta)
+
+
+func _move_via_analogue(delta):
+	var dir := Vector2(
+		Input.get_action_strength("move_dial_right") - Input.get_action_strength("move_dial_left"),
+		Input.get_action_strength("move_dial_down") - Input.get_action_strength("move_dial_up")
+	)
+
+	if dir.length() > 0.1:
+		print("Movement direction: ", dir.normalized())
+
 
 
 func _move_via_mouse(delta):
