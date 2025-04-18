@@ -18,5 +18,13 @@ func charge(target):
 	movement_comp.approach(target)
 
 
+func face_left():
+	sword.face_left()
+
+
+func face_right():
+	sword.face_right()
+
+
 func on_target_reached():
 	sword.attack()
