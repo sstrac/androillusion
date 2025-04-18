@@ -8,12 +8,4 @@ func _init(character):
 	
 
 func _on_still_timer_timeout(character):
-	character.movement_comp.post_still()
-
-
-func post_jump(_character):
-	pass
-	
-
-func post_slash(_character):
-	pass
+	character.movement_comp.be_idle()

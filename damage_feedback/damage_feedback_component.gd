@@ -6,6 +6,7 @@ extends Node2D
 var number
 
 func _ready() -> void:
+	assert(health_comp)
 	health_comp.health_changed.connect(_feedback)
 
 

@@ -1,4 +1,4 @@
-extends MovementState
+extends PlayerMovementState
 
 class_name PlayerControl
 

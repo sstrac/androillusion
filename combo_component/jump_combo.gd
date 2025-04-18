@@ -44,5 +44,5 @@ func progress():
 
 func _on_slash_complete():
 	movement_comp.post_slash()
-	sword.hide()
+	sword.deactivate()
 	sword.attacking = false

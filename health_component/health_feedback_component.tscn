@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cww8pyrkmhesg"]
+
+[ext_resource type="Script" path="res://health_component/health_feedback_component.gd" id="1_bpo4n"]
+
+[node name="HealthFeedbackComponent" type="ProgressBar"]
+custom_minimum_size = Vector2(30, 4)
+offset_right = 30.0
+offset_bottom = 4.0
+step = 1.0
+value = 50.0
+show_percentage = false
+script = ExtResource("1_bpo4n")

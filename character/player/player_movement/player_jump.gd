@@ -1,4 +1,4 @@
-extends PlayerControl
+extends PlayerMovementState
 
 class_name PlayerJump
 
@@ -7,12 +7,15 @@ const DISTANCE = 200
 const EPSILON = 0.01
 
 var theta = 0
-	
+var player_control_state: MovementState
+
+
+func _init():
+	player_control_state = PlayerControl.new()
+
 
 func physics_process(character, delta):
-	var v_dir = Input.get_axis("up", "down")
-	var h_dir = Input.get_axis("left", "right")
-	character.global_position += Vector2(h_dir, v_dir) * SPEED
+	player_control_state.physics_process(character, delta)
 	
 	theta += delta
 	character.velocity.y = -DISTANCE * sin(JUMP_SPEED * theta) + 1

@@ -19,3 +19,4 @@ offset_right = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageDealerComponent"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_jpg56")
+disabled = true

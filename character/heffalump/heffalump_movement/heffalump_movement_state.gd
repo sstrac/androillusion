@@ -1,0 +1,3 @@
+extends MovementState
+
+class_name HeffalumpMovementState

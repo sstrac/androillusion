@@ -3,36 +3,35 @@ extends CharacterBody2D
 class_name Character
 
 
-@onready var label = get_node('Label')
-@onready var anim = get_node("AnimationPlayer")
-@onready var health_comp = get_node("HealthComponent")
-@onready var hitbox_comp: Area2D = get_node("HitboxComponent")
-@onready var damage_feedback_comp = get_node("DamageFeedbackComponent")
-
+@export var anim: AnimationPlayer
+@export var damage_feedback_comp: Node2D
+@export var hitbox_comp: Area2D
+@export var health_comp: Node
+@export var health_feedback_comp: ProgressBar
 @export var movement_comp: Node
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	label.text = '%d' % health_comp.health
-	health_comp.health_changed.connect(_on_health_changed)
+	if health_comp:
+		health_comp.health_changed.connect(_on_health_changed)
 
 
 func _on_health_changed(change):
-	label.text = '%d' % health_comp.health
-	anim.play('flash')
+	if anim:
+		anim.play('flash')
 
 
 func _physics_process(delta: float) -> void:
-	movement_comp.physics_process(delta)
+	if movement_comp:
+		movement_comp.physics_process(delta)
 	
 
 func _process(delta: float) -> void:
-	movement_comp.process(delta)
+	if movement_comp:
+		movement_comp.process(delta)
 	
 	
 ### Used only by state ###
 func go_to(pos, delta, speed=100):
 	global_position = global_position.move_toward(pos, delta * speed)
-	print(pos)
 	move_and_slide()

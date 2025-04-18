@@ -3,6 +3,7 @@ extends MovementComponent
 
 @onready var timer_change_direction = get_node("ChangeDirectionTimer")
 @onready var still_timer = get_node("StillTimer")
+@onready var aiming_timer = get_node("AimingTimer")
 
 
 func _ready():
@@ -16,12 +17,20 @@ func _on_change_direction_timeout():
 
 
 func approach(target):
-	state = AndroidApproach.new(target)
+	state = AndroidApproach.new(target, aiming_timer)
 
 
 func jump():
 	state = AndroidJump.new()
-	
+
+
+func be_still():
+	state = AndroidStill.new(character)
+
+
+func be_idle():
+	state = AndroidIdle.new(character)
+
 	
 func post_jump():
 	state.post_jump(character)
@@ -29,11 +38,3 @@ func post_jump():
 
 func post_slash():
 	state.post_slash(character)
-	
-	
-func post_approach():
-	state = AndroidStill.new(character)
-
-
-func post_still():
-	state = AndroidIdle.new(character)

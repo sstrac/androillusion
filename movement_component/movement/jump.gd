@@ -10,7 +10,7 @@ const EPSILON = 0.01
 var theta = 0
 
 
-func physics_process(character, delta):	
+func physics_process(character, delta):
 	theta += delta
 	character.velocity.y = -DISTANCE * sin(JUMP_SPEED * theta) + 1
 	character.move_and_slide()

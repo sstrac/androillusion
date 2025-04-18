@@ -11,3 +11,7 @@ func jump():
 
 func post_jump():
 	state = PlayerControl.new()
+
+
+func post_slash():
+	pass

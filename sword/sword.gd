@@ -16,6 +16,16 @@ func _ready() -> void:
 func attack():
 	if not attacking:
 		attacking = true
-		show()
+		reactivate()
 		avoid_hitbox = avoid_hitbox
 		combo.progress()
+
+
+func deactivate():
+	hide()
+	damage_dealer_comp.disable()
+	
+	
+func reactivate():
+	show()
+	damage_dealer_comp.enable()

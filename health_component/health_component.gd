@@ -1,6 +1,11 @@
 extends Node
 
-@export var max_health: int
+@export var max_health: int:
+	set(mh):
+		max_health = mh
+		if health == 0:
+			health = mh
+
 
 var health: int:
 	set(h):
@@ -8,10 +13,6 @@ var health: int:
 
 signal dead
 signal health_changed(change)
-
-
-func _ready():
-	health = max_health
 
 	
 func increase(_health):

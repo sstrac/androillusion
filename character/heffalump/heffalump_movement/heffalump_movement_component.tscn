@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dys8rkxb8mwwx"]
+
+[ext_resource type="Script" path="res://character/heffalump/heffalump_movement/heffalump_movement_component.gd" id="1_guop4"]
+
+[node name="HeffalumpMovementComponent" type="Node"]
+script = ExtResource("1_guop4")

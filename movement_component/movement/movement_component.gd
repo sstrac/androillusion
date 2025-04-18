@@ -21,19 +21,3 @@ func approach(target: Node2D):
 
 func jump():
 	pass
-	
-
-func post_jump():
-	pass
-
-
-func post_slash():
-	pass
-	
-	
-func post_approach():
-	pass
-	
-
-func post_still():
-	pass
