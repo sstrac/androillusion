@@ -8,7 +8,6 @@ const DEVICE = 0
 
 var center
 var x
-var hand_moving = false
 
 signal changed(factor)
 
@@ -16,30 +15,23 @@ func _ready() -> void:
 	center = hand.global_position
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if InputManager.dial_moved(event):
-		hand_moving = true
-	elif InputManager.dial_stopped(event):
-		hand_moving = false
-
-
 func _physics_process(delta: float) -> void:
-	if hand_moving:
-		if InputTracker.last_input_device == InputTracker.InputDevice.KEYBOARD_MOUSE:
-			_move_via_mouse(delta)
-		elif InputTracker.last_input_device == InputTracker.InputDevice.GAMEPAD:
-			_move_via_analogue(delta)
+	if Input.is_action_pressed("move_dial_click") and InputTracker.last_input_device == InputTracker.InputDevice.KEYBOARD_MOUSE:
+		_move_via_mouse(delta)
+	elif InputTracker.last_input_device == InputTracker.InputDevice.GAMEPAD:
+		_move_via_analogue(delta)
 
 
 func _move_via_analogue(delta):
-	var dir = Vector2(
-		Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_X),
-		Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_Y)
+	var analogue_dir = Vector2(
+		Input.get_action_strength("r_right") - Input.get_action_strength("r_left"),
+		Input.get_action_strength("r_down") - Input.get_action_strength("r_up")  
 	)
+	analogue_dir = analogue_dir.clamp(Vector2(-1.0, -1.0), Vector2(1.0, 0.0))
 	
-	dir = dir.clamp(Vector2(-1.0, -1.0), Vector2(1.0, 0.0))
-	var angle = Vector2.UP.angle_to(dir)
-	hand.rotation = lerp(hand.rotation, angle, delta * 15)
+	if analogue_dir != Vector2.ZERO:
+		var angle = Vector2.UP.angle_to(analogue_dir)
+		hand.rotation = lerp(hand.rotation, angle, delta * 15)
 	
 
 func _move_via_mouse(delta):
