@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dslups6jadhbu"]
 
-[ext_resource type="Shader" path="res://semicircle.gdshader" id="1_3jlus"]
+[ext_resource type="Shader" path="res://resources/shaders/semicircle.gdshader" id="1_3jlus"]
 [ext_resource type="Script" path="res://dial/dial.gd" id="2_427lf"]
-[ext_resource type="Shader" path="res://circle.gdshader" id="3_b4qxw"]
+[ext_resource type="Shader" path="res://resources/shaders/circle.gdshader" id="3_b4qxw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u4ekh"]
 shader = ExtResource("1_3jlus")

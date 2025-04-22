@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dierubkt3a2ux"]
+
+[ext_resource type="Script" path="res://extra_components/debug_radius.gd" id="1_istj6"]
+[ext_resource type="Shader" path="res://resources/shaders/circle.gdshader" id="2_qnpte"]
+[ext_resource type="Texture2D" uid="uid://cluevoyl0be26" path="res://resources/textures/debug_texture.tres" id="3_hl676"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqufs"]
+shader = ExtResource("2_qnpte")
+
+[node name="DebugRadius" type="Node2D" node_paths=PackedStringArray("debug_sprite")]
+script = ExtResource("1_istj6")
+debug_sprite = NodePath("Sprite2D")
+radius = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mqufs")
+texture = ExtResource("3_hl676")

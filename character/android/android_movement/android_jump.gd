@@ -5,8 +5,9 @@ class_name AndroidJump
 var jump_state: MovementState
 
 
-func _init():
+func _init(character):
 	jump_state = Jump.new()
+	character.velocity = Vector2.ZERO
 	
 	
 func physics_process(character, delta):
@@ -14,4 +15,4 @@ func physics_process(character, delta):
 	
 
 func post_jump(character):
-	character.movement_comp.go_still()
+	character.movement_comp.be_still()

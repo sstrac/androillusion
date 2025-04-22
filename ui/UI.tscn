@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://mr5cdwyniife"]
 
-[ext_resource type="Script" path="res://ui.gd" id="1_y26k7"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_y26k7"]
 [ext_resource type="PackedScene" uid="uid://dslups6jadhbu" path="res://dial/dial.tscn" id="2_1dmtt"]
 
 [node name="UI" type="Control"]

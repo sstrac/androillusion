@@ -1,4 +1,4 @@
-extends MovementState
+extends AndroidMovementState
 
 class_name AndroidStill
 

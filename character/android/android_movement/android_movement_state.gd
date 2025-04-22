@@ -6,10 +6,6 @@ class_name AndroidMovementState
 
 func post_jump(_character):
 	pass
-	
-
-func post_slash(_character):
-	pass
 
 
 func redirect_idle_point(character):

@@ -27,8 +27,3 @@ func process(character, delta):
 		elif not target_reached:
 			character.on_target_reached()
 			target_reached = true
-
-
-func post_slash(character):
-	character.movement_comp.be_idle()
-	
