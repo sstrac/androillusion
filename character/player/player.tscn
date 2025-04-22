@@ -60,6 +60,7 @@ sword = NodePath("../Sword")
 [node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_6cpt4")]
 movement_comp = NodePath("../PlayerMovementComponent")
 sword = NodePath("../Sword")
+slash_speed = 600
 
 [node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "avoid_hitbox") instance=ExtResource("4_vl6jl")]
 visible = false

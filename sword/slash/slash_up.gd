@@ -1,14 +1,14 @@
 extends Slash
 
-
-const SPEED = 500
 const EPSILON = 0.01
 
 const FINAL_ROTATION = 0
 
 var increment_factor: int
 var facing
-@export var sword: Node2D
+
+var speed: int
+var sword: Node2D
 
 
 func _ready() -> void:
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	elif facing == LEFT:
 		increment_factor = 1
 	
-	sword.rotation_degrees += increment_factor * delta * SPEED
+	sword.rotation_degrees += increment_factor * delta * speed
 
 	if abs(sword.rotation_degrees) < EPSILON:
 		queue_free()

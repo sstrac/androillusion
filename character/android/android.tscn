@@ -54,10 +54,10 @@ character = NodePath("..")
 [node name="HealthComponent" parent="." instance=ExtResource("3_nbgpg")]
 max_health = 100
 
-[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "detection_comp", "sword") instance=ExtResource("5_sq83f")]
+[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_sq83f")]
 movement_comp = NodePath("../AndroidMovementComponent")
-detection_comp = NodePath("../DetectionComponent")
 sword = NodePath("../Sword")
+slash_speed = 400
 
 [node name="HealthFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_vg0m6")]
 offset_left = -15.0
