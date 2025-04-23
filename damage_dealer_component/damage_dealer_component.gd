@@ -6,6 +6,8 @@ extends Area2D
 
 @export var avoid_hitbox: Area2D
 
+var multiplier: float = 1.0
+
 
 func disable():
 	collision_shape.disabled = true
@@ -13,3 +15,7 @@ func disable():
 
 func enable():
 	collision_shape.disabled = false
+
+
+func get_total_damage():
+	return base_damage * multiplier * DialTracker.factor

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://iu2di7i1ildc"]
+[gd_scene load_steps=17 format=3 uid="uid://iu2di7i1ildc"]
 
 [ext_resource type="Script" path="res://character/android/android.gd" id="1_5c76c"]
 [ext_resource type="PackedScene" uid="uid://20sl7l4jxmne" path="res://character/android/android_movement/android_movement_component.tscn" id="1_rxr3m"]
@@ -8,8 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://v5bdtgrgd4v6" path="res://sword/sword.tscn" id="4_2oniy"]
 [ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_6he0j"]
 [ext_resource type="PackedScene" uid="uid://dofb14x11ank7" path="res://combo_component/jump_combo.tscn" id="5_sq83f"]
+[ext_resource type="PackedScene" uid="uid://buu16rcco2mku" path="res://damage_dealer_component/damage_dealer_component.tscn" id="7_wg02q"]
 [ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="8_jj5ub"]
 [ext_resource type="PackedScene" uid="uid://cpj7gv63xf67i" path="res://detection_component/detection_component.tscn" id="10_r7ldm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2nb7"]
+size = Vector2(2, 25.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
 size = Vector2(32, 56)
@@ -54,8 +58,9 @@ character = NodePath("..")
 [node name="HealthComponent" parent="." instance=ExtResource("3_nbgpg")]
 max_health = 100
 
-[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_sq83f")]
+[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "damage_dealer_comp", "sword") instance=ExtResource("5_sq83f")]
 movement_comp = NodePath("../AndroidMovementComponent")
+damage_dealer_comp = NodePath("../Sword/DamageDealerComponent")
 sword = NodePath("../Sword")
 slash_speed = 400
 
@@ -73,13 +78,21 @@ offset_right = 16.0
 offset_bottom = 28.0
 color = Color(0.890706, 0, 0.0493286, 1)
 
-[node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "movement_comp", "avoid_hitbox") instance=ExtResource("4_2oniy")]
+[node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "damage_dealer_comp") instance=ExtResource("4_2oniy")]
 visible = false
 position = Vector2(18, 7)
 character = NodePath("..")
 combo = NodePath("../JumpCombo")
-movement_comp = NodePath("../AndroidMovementComponent")
-avoid_hitbox = NodePath("../HitboxComponent")
+damage_dealer_comp = NodePath("DamageDealerComponent")
+
+[node name="DamageDealerComponent" parent="Sword" node_paths=PackedStringArray("avoid_hitbox") instance=ExtResource("7_wg02q")]
+position = Vector2(-18, -7)
+avoid_hitbox = NodePath("../../HitboxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/DamageDealerComponent"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_o2nb7")
+disabled = true
 
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_o5abo")]
 position = Vector2(0, -48)

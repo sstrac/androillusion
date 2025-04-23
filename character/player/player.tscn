@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b13i8r5vn7lw6"]
+[gd_scene load_steps=17 format=3 uid="uid://b13i8r5vn7lw6"]
 
 [ext_resource type="Script" path="res://character/player/player.gd" id="1_2qf3b"]
 [ext_resource type="PackedScene" uid="uid://cww8pyrkmhesg" path="res://health_component/health_feedback_component.tscn" id="2_2ptmp"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://xtmmaadhfane" path="res://hitbox_component/hitbox_component.tscn" id="4_vki7y"]
 [ext_resource type="PackedScene" uid="uid://v5bdtgrgd4v6" path="res://sword/sword.tscn" id="4_vl6jl"]
 [ext_resource type="PackedScene" uid="uid://dofb14x11ank7" path="res://combo_component/jump_combo.tscn" id="5_6cpt4"]
+[ext_resource type="PackedScene" uid="uid://buu16rcco2mku" path="res://damage_dealer_component/damage_dealer_component.tscn" id="7_pios3"]
 [ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="9_xam0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ud38"]
+size = Vector2(2, 25.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
 size = Vector2(32, 56)
@@ -57,17 +61,26 @@ character = NodePath("..")
 [node name="SwordInputComponent" parent="." node_paths=PackedStringArray("sword") instance=ExtResource("3_rjygk")]
 sword = NodePath("../Sword")
 
-[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "sword") instance=ExtResource("5_6cpt4")]
+[node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "damage_dealer_comp", "sword") instance=ExtResource("5_6cpt4")]
 movement_comp = NodePath("../PlayerMovementComponent")
+damage_dealer_comp = NodePath("../Sword/DamageDealerComponent")
 sword = NodePath("../Sword")
 slash_speed = 600
 
-[node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "avoid_hitbox") instance=ExtResource("4_vl6jl")]
+[node name="Sword" parent="." node_paths=PackedStringArray("character", "combo", "damage_dealer_comp") instance=ExtResource("4_vl6jl")]
 visible = false
 position = Vector2(17, 3)
 character = NodePath("..")
 combo = NodePath("../JumpCombo")
-avoid_hitbox = NodePath("../HitboxComponent")
+damage_dealer_comp = NodePath("DamageDealerComponent")
+
+[node name="DamageDealerComponent" parent="Sword" node_paths=PackedStringArray("avoid_hitbox") instance=ExtResource("7_pios3")]
+avoid_hitbox = NodePath("../../HitboxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/DamageDealerComponent"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_2ud38")
+disabled = true
 
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_s186m")]
 position = Vector2(0, -48)
@@ -95,13 +108,7 @@ offset_left = -16.0
 offset_top = -28.0
 offset_right = 16.0
 offset_bottom = 28.0
-color = Color(0.890706, 0, 0.0493286, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -16.0
-offset_top = -28.0
-offset_right = 4.0
-offset_bottom = 28.0
+color = Color(2.96004e-06, 0.568913, 0.295254, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

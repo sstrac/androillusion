@@ -3,7 +3,7 @@ extends AndroidMovementState
 class_name AndroidApproach
 
 const SPEED = 500
-const CLOSE_RANGE = 10
+const CLOSE_RANGE = 20
 
 var target: Node2D
 var last_target_location: Vector2
