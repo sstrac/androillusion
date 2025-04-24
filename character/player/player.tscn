@@ -12,13 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://buu16rcco2mku" path="res://damage_dealer_component/damage_dealer_component.tscn" id="7_pios3"]
 [ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="9_xam0j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ud38"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr1i8"]
 size = Vector2(2, 25.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfcyd"]
 size = Vector2(32, 56)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktb06"]
 size = Vector2(32, 56)
 
 [sub_resource type="Animation" id="Animation_dj7w5"]
@@ -79,7 +79,7 @@ avoid_hitbox = NodePath("../../HitboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/DamageDealerComponent"]
 position = Vector2(0, -13)
-shape = SubResource("RectangleShape2D_2ud38")
+shape = SubResource("RectangleShape2D_rr1i8")
 disabled = true
 
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_s186m")]
@@ -90,10 +90,10 @@ health_comp = NodePath("../HealthComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("RectangleShape2D_uegq5")
+shape = SubResource("RectangleShape2D_gfcyd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yk7x0")
+shape = SubResource("RectangleShape2D_ktb06")
 debug_color = Color(0.438128, 0.454891, 1, 0.42)
 
 [node name="HealthFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_2ptmp")]

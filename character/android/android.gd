@@ -23,7 +23,11 @@ func _on_slash_complete():
 		movement_comp.post_combo()
 		
 	else:
-		sword.attack()
+		#TODO Try calling sword.attack() deferred
+		#But will that work because collision shape disablement is
+		# also called deferred...
+		sword.plan_attack()
+		
 		
 
 func _on_health_changed(change):

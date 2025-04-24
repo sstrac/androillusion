@@ -10,11 +10,11 @@ var multiplier: float = 1.0
 
 
 func disable():
-	collision_shape.disabled = true
+	collision_shape.set_deferred('disabled', true)
 
 
 func enable():
-	collision_shape.disabled = false
+	collision_shape.set_deferred('disabled', false)
 
 
 func get_total_damage():

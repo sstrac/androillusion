@@ -16,6 +16,7 @@ const LAND_SLASH_COMBO_DAMAGE_MULTIPLIER = 3
 
 @onready var reset_timer: Timer = get_node("ResetTimer")
 
+var slashing = false
 var curr_slash_i = -1
 
 signal slash_complete
@@ -26,10 +27,17 @@ func _ready() -> void:
 
 
 func _reset_combo():
-	curr_slash_i = -1
+	if not slashing:
+		curr_slash_i = -1
+
+
+func _slash_complete():
+	slashing = false
+	slash_complete.emit()
 
 
 func progress(facing):
+	slashing = true
 	reset_timer.start()
 	
 	assert(sword != null)
@@ -45,7 +53,7 @@ func progress(facing):
 	slash.sword = sword
 	slash.facing = facing
 	slash.speed = slash_speed
-	slash.tree_exited.connect(func(): slash_complete.emit())
+	slash.tree_exited.connect(_slash_complete)
 	sword.add_child(slash)
 	
 	if curr_slash_i == JUMP_UP_SLASH_COMBO_INDEX:
@@ -58,5 +66,6 @@ func progress(facing):
 	else:
 		damage_dealer_comp.multiplier = 1
 
-func combo_complete():
+
+func combo_complete() -> bool:
 	return curr_slash_i == len(ORDERED_SLASHES) - 1

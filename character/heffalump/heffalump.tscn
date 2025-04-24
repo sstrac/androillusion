@@ -30,8 +30,10 @@ offset_left = -31.0
 offset_top = -25.0
 offset_right = 29.0
 offset_bottom = 25.0
+color = Color(0.501961, 0.92549, 1, 1)
 
 [node name="HeffalumpMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_shryn")]
+disabled = true
 character = NodePath("..")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_d8vm3")]
@@ -48,6 +50,7 @@ avoid_hitbox = NodePath("../HitboxComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageDealerComponent"]
 position = Vector2(-1, 0)
 shape = ExtResource("4_4c8n7")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)

@@ -12,13 +12,13 @@
 [ext_resource type="Animation" uid="uid://6l2ch5vylhka" path="res://resources/animations/flash.res" id="8_jj5ub"]
 [ext_resource type="PackedScene" uid="uid://cpj7gv63xf67i" path="res://detection_component/detection_component.tscn" id="10_r7ldm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2nb7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm3et"]
 size = Vector2(2, 25.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uegq5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l30vr"]
 size = Vector2(32, 56)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7x0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tk1a"]
 size = Vector2(32, 56)
 
 [sub_resource type="Animation" id="Animation_dj7w5"]
@@ -56,13 +56,13 @@ movement_comp = NodePath("AndroidMovementComponent")
 character = NodePath("..")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_nbgpg")]
-max_health = 100
+max_health = 1000
 
 [node name="JumpCombo" parent="." node_paths=PackedStringArray("movement_comp", "damage_dealer_comp", "sword") instance=ExtResource("5_sq83f")]
 movement_comp = NodePath("../AndroidMovementComponent")
 damage_dealer_comp = NodePath("../Sword/DamageDealerComponent")
 sword = NodePath("../Sword")
-slash_speed = 400
+slash_speed = 300
 
 [node name="HealthFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_vg0m6")]
 offset_left = -15.0
@@ -86,12 +86,11 @@ combo = NodePath("../JumpCombo")
 damage_dealer_comp = NodePath("DamageDealerComponent")
 
 [node name="DamageDealerComponent" parent="Sword" node_paths=PackedStringArray("avoid_hitbox") instance=ExtResource("7_wg02q")]
-position = Vector2(-18, -7)
 avoid_hitbox = NodePath("../../HitboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/DamageDealerComponent"]
-position = Vector2(0, -13)
-shape = SubResource("RectangleShape2D_o2nb7")
+position = Vector2(-18, -20)
+shape = SubResource("RectangleShape2D_hm3et")
 disabled = true
 
 [node name="DamageFeedbackComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_o5abo")]
@@ -102,10 +101,10 @@ health_comp = NodePath("../HealthComponent")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("RectangleShape2D_uegq5")
+shape = SubResource("RectangleShape2D_l30vr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yk7x0")
+shape = SubResource("RectangleShape2D_2tk1a")
 debug_color = Color(0.438128, 0.454891, 1, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -114,5 +113,6 @@ libraries = {
 }
 
 [node name="DetectionComponent" parent="." node_paths=PackedStringArray("exclude") instance=ExtResource("10_r7ldm")]
+visible = false
 exclude = NodePath("..")
 length = 40.0

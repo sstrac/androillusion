@@ -6,7 +6,7 @@ extends Node
 
 
 func _on_button_pressed() -> void:
-	android.charge(player)
+	android.charge(heffalump)
 	#heffalump.charge(player)
 
 
