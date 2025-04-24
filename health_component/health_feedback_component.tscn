@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://health_component/health_feedback_component.gd" id="1_bpo4n"]
 
 [node name="HealthFeedbackComponent" type="ProgressBar"]
+modulate = Color(0.87451, 0.054902, 0.164706, 1)
 custom_minimum_size = Vector2(30, 4)
 offset_right = 30.0
 offset_bottom = 4.0
