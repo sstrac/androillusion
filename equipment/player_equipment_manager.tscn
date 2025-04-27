@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvyur5id1r0bi"]
+
+[ext_resource type="Script" path="res://equipment/player_equipment_manager.gd" id="1_qbuqq"]
+
+[node name="PlayerInputComponent" type="Node"]
+script = ExtResource("1_qbuqq")

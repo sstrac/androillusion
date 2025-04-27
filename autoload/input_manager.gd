@@ -13,3 +13,11 @@ func _process(delta):
 
 func interact_pressed(event: InputEvent):
 	return event.is_action_pressed("interact")
+	
+
+func interact_released(event: InputEvent):
+	return event.is_action_released("interact")
+
+
+func switch_equipment_pressed(event: InputEvent):
+	return event.is_action_pressed("switch_equipment")

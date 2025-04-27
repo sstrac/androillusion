@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://damage_dealer_component/damage_dealer_component.gd" id="1_b5lab"]
 
-[node name="DamageDealerComponent" type="Area2D"]
+[node name="DamageDealerComponent" type="Node"]
 script = ExtResource("1_b5lab")
 base_damage = 1

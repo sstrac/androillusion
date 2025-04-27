@@ -1,8 +1,12 @@
-extends Node2D
+extends Equipment
 
 @export var character: CharacterBody2D
 @export var combo: Node
-@export var damage_dealer_comp: Area2D 
+@export var damage_dealer_comp: Node
+@export var avoid_hitbox: Area2D
+
+@onready var collision_shape: CollisionShape2D = get_node("CollisionShape2D")
+
 
 var attacking: bool = false
 var facing
@@ -10,6 +14,7 @@ var facing
 
 func _ready() -> void:
 	facing = Slash.RIGHT
+	
 
 
 func attack():
@@ -31,13 +36,13 @@ func plan_attack():
 	
 func deactivate():
 	hide()
-	damage_dealer_comp.disable()
+	collision_shape.set_deferred('disabled', true)
 	
 	
 func reactivate():
 	show()
-	damage_dealer_comp.enable()
-	
+	collision_shape.set_deferred('disabled', false)
+
 	
 func face_left():
 	position.x = -abs(position.x)

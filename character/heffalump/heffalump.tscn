@@ -16,7 +16,6 @@ _data = {
 }
 
 [node name="Heffalump" type="CharacterBody2D" node_paths=PackedStringArray("anim", "damage_feedback_comp", "hitbox_comp", "health_comp", "health_feedback_comp", "movement_comp")]
-collision_mask = 0
 script = ExtResource("1_qhfok")
 anim = NodePath("AnimationPlayer")
 damage_feedback_comp = NodePath("DamageFeedbackComponent")
@@ -35,8 +34,8 @@ color = Color(0.501961, 0.92549, 1, 1)
 [node name="HeffalumpMovementComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_shryn")]
 character = NodePath("..")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_d8vm3")]
-health_component = NodePath("../HealthComponent")
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("3_d8vm3")]
+health_comp = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-1, 0)

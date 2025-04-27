@@ -1,0 +1,176 @@
+[gd_scene load_steps=10 format=3 uid="uid://udf6awd30tpw"]
+
+[ext_resource type="Script" path="res://equipment/flamethrower/flamethrower.gd" id="1_7afe0"]
+[ext_resource type="Shader" path="res://resources/shaders/curved_cone.gdshader" id="2_gs6ta"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xgspa"]
+shader = ExtResource("2_gs6ta")
+
+[sub_resource type="Gradient" id="Gradient_8u435"]
+offsets = PackedFloat32Array(0, 0.347079, 1)
+colors = PackedColorArray(0.941176, 1, 0.0117647, 1, 0.963058, 0.811822, 0.0380222, 1, 1, 0.494118, 0.0823529, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4rxuo"]
+gradient = SubResource("Gradient_8u435")
+width = 100
+height = 30
+fill_to = Vector2(1, 0.739857)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne4px"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_svpn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rays/ShapeCast2D:target_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rays/ShapeCast2D2:target_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rays/ShapeCast2D3:target_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_flvcj"]
+resource_name = "throw"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rays/ShapeCast2D:target_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rays/ShapeCast2D2:target_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(90, -20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rays/ShapeCast2D3:target_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(90, 20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yonqi"]
+_data = {
+"RESET": SubResource("Animation_svpn1"),
+"throw": SubResource("Animation_flvcj")
+}
+
+[node name="Flamethrower" type="Node2D"]
+script = ExtResource("1_7afe0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_xgspa")
+offset_top = -36.0
+offset_right = 106.0
+offset_bottom = 36.0
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_4rxuo")
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Rays"]
+enabled = false
+shape = SubResource("CircleShape2D_ne4px")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="ShapeCast2D2" type="ShapeCast2D" parent="Rays"]
+enabled = false
+shape = SubResource("CircleShape2D_ne4px")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="ShapeCast2D3" type="ShapeCast2D" parent="Rays"]
+enabled = false
+shape = SubResource("CircleShape2D_ne4px")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="HitTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yonqi")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
