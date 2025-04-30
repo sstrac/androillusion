@@ -25,6 +25,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if hit_timer.time_left == 0 and attacking:
 		_damage_nearby_characters()
+	
+	var dir = Input.get_vector("left", "right", "up", "down")
+	#rotation = Vector2.RIGHT.angle_to(dir)
+	
+	var new_rotation: float = lerp(rotation, Vector2.RIGHT.angle_to(dir), delta * 10)
+	
+	if new_rotation < 0 and rotation > 0 or new_rotation > 0 and rotation < 0:
+		print('switching sign')
+	
+	
+	rotation = new_rotation
+	
 
 
 func _damage_nearby_characters():
@@ -37,13 +49,12 @@ func _damage_nearby_characters():
 
 
 func attack():
-	if not attacking:
-		for ray: ShapeCast2D in rays:
-			ray.enabled = true
-		attacking = true
-		retracting = false
-		hit_timer.start()
-		anim.play('throw')
+	for ray: ShapeCast2D in rays:
+		ray.enabled = true
+	attacking = true
+	retracting = false
+	hit_timer.start()
+	anim.play('throw')
 
 
 func stop():

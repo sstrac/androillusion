@@ -13,7 +13,6 @@ func _ready():
 
 func _unhandled_input(event):
 	if InputManager.switch_equipment_pressed(event):
-		print(event)
 		equipment[equipped_i].stop()
 		
 		if equipped_i < len(equipment) - 1:
