@@ -13,10 +13,14 @@ func _ready():
 
 func _unhandled_input(event):
 	if InputManager.switch_equipment_pressed(event):
+		print(event)
+		equipment[equipped_i].stop()
+		
 		if equipped_i < len(equipment) - 1:
 			equipped_i += 1
 		else:
 			equipped_i = 0
+		
 	
 	elif InputManager.interact_pressed(event):
 		equipment[equipped_i].attack()
